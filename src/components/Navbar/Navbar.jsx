@@ -26,14 +26,14 @@ export const Navbar = () => {
                 Alert
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/map">
-                Map
-              </Link>
-            </li>
             <li className="nav-item dropdown">
               <Link className="nav-link" to="/alerts">
                 Alerts
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/map">
+                Map
               </Link>
             </li>
           </ul>
