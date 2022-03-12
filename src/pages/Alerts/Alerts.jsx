@@ -7,7 +7,7 @@ const Alerts = (props) => {
 
   const onEditHandler = (id) => navigate("/" + id);
   return (
-    <table class="table">
+    <table className="table">
       <thead>
         <tr>
           <th scope="col">Id</th>
@@ -22,16 +22,16 @@ const Alerts = (props) => {
         {alerts &&
           alerts.length &&
           alerts.map((alert) => (
-            <tr>
+            <tr key={alert.id}>
               <th scope="row">{alert.id}</th>
               <td>{alert.point ? alert.point.join(", ") : alert.points.flat().join(", ")}</td>
               <td>{alert.radius}</td>
               <td>{alert.type}</td>
               <td>
-                <i class="bi bi-pencil" onClick={onEditHandler.bind(null, alert.id)}></i>
+                <i className="bi bi-pencil" onClick={onEditHandler.bind(null, alert.id)}></i>
               </td>
               <td>
-                <i class="bi bi-trash" onClick={deleteAlert.bind(null, alert.id)}></i>
+                <i className="bi bi-trash" onClick={deleteAlert.bind(null, alert.id)}></i>
               </td>
             </tr>
           ))}
