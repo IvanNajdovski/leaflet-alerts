@@ -1,50 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Outlet, Link, useRoutes, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAlerts } from "../../context/alerts-context.js";
+import { InputsRadius } from "../../components/Inputs/InputsRadius/InputsRadius";
+import { InputsArea } from "../../components/Inputs/InputsArea/InputsArea";
 
-const PointInputSet = ({ value, onChange }) => {
-  return (
-    <div className="row">
-      <div className="col-6">
-        <div className="mb-3">
-          <label htmlFor="pointLat1" className="form-label">
-            Point Latitude
-          </label>
-          <input
-            required
-            type="number"
-            min={-90}
-            max={90}
-            id="pointLat1"
-            name={"latitude"}
-            onChange={onChange}
-            value={value[0]}
-            className="form-control"
-          />
-        </div>
-      </div>
-      <div className="col-6">
-        <div className="mb-3">
-          <label htmlFor="pointLong1" className="form-label">
-            Point Longitude
-          </label>
-          <input
-            required
-            type="number"
-            min={-180}
-            max={180}
-            id="pointLong1"
-            name={"longitude"}
-            onChange={onChange}
-            value={value[1]}
-            className="form-control"
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
 const initialRadiusArea = {
   radius: "",
   latitude: "",
@@ -154,80 +114,10 @@ const Alert = () => {
       </div>
       <div className="row">
         <div className="col-6">
-          <fieldset disabled={!modeRadius}>
-            <legend>Select Point</legend>
-            <div className="mb-3">
-              <label htmlFor="radiusLat" className="form-label">
-                Radius Latitude
-              </label>
-              <input
-                type="number"
-                id="radiusLat"
-                onChange={onRadiusChangeArea}
-                value={radiusArea.latitude}
-                name={"latitude"}
-                className="form-control"
-                required={modeRadius}
-                min={-90}
-                max={180}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="radiusLong" className="form-label">
-                Radius Longitude
-              </label>
-              <input
-                type="number"
-                id="radiusLong"
-                onChange={onRadiusChangeArea}
-                value={radiusArea.longitude}
-                name={"longitude"}
-                className="form-control"
-                required={modeRadius}
-                min={-180}
-                max={180}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="radius" className="form-label">
-                Radius
-              </label>
-              <input
-                type="number"
-                id="radius"
-                onChange={onRadiusChangeArea}
-                value={radiusArea.radius}
-                name="radius"
-                className="form-control"
-                required={modeRadius}
-              />
-            </div>
-          </fieldset>
+          <InputsRadius radiusArea={radiusArea} onChangeHandler={onRadiusChangeArea} modeRadius={modeRadius} />
         </div>
         <div className="col-6">
-          <fieldset disabled={modeRadius}>
-            <legend>Select Area</legend>
-            <div className="mb-3">
-              <label htmlFor="numberOfPoints" className="form-label">
-                Number Of Points
-              </label>
-              <input
-                type="number"
-                min={1}
-                max={8}
-                id="numberOfPoints"
-                onChange={onPointChangeArea}
-                value={pointArea.numOfPoints}
-                name={"numOfPoints"}
-                className="form-control"
-                placeholder="Enter Number of Points"
-                required={!modeRadius}
-              />
-            </div>
-            {pointArea.locations.map((val, index) => (
-              <PointInputSet key={index} onChange={(e) => onPointChangeArea(e, index)} value={val} index={index} />
-            ))}
-          </fieldset>
+          <InputsArea modeRadius={modeRadius} pointArea={pointArea} onChangeHandler={onPointChangeArea} />
         </div>
       </div>
       <div className="row ">

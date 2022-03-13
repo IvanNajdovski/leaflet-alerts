@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AlertsContextProvider } from "./context/alerts-context";
 import { Navbar } from "./components/Navbar/Navbar";
 
-import MapView from "./pages//Map/MapView";
+import MapView from "./pages/Map/Map";
 import Alert from "./pages/Alert/Alert";
 import Alerts from "./pages/Alerts/Alerts";
 
